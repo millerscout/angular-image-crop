@@ -762,7 +762,7 @@
     .directive('imageCrop', function() {
 
       return {
-        template: '<div id="image-crop-{{ rand }}" class="ng-image-crop ng-image-crop--{{ shape }}" ng-style="moduleStyles"><section ng-style="sectionStyles" ng-show="step==1"><div style="margin-bottom: 15px;" class="row no-margin-right-s-only no-margin-left-s-only">        <div class="file-field input-field btn waves-effect waves-light col s12 m10 offset-m1 l8 offset-l2"><span>Selecionar		<input type="file" class="image-crop-input"  accept="{{accept}}" />         </span></div>			</div></section><section ng-style="sectionStyles" ng-show="step==2"><canvas class="cropping-canvas" width="{{ canvasWidth }}" height="{{ canvasHeight }}" ng-mousemove="onCanvasMouseMove($event)" ng-mousedown="onCanvasMouseDown($event)" ng-mouseup="onCanvasMouseUp($event)"></canvas><div ng-style="croppingGuideStyles" class="cropping-guide"></div><div class="zoom-handle" ng-mousemove="onHandleMouseMove($event)" ng-mousedown="onHandleMouseDown($event)" ng-mouseup="onHandleMouseUp($event)"><span>&larr; zoom &rarr;</span></div><button ng-click="crop()">Crop</button></section><section ng-style="sectionStyles" class="image-crop-section-final" ng-show="step==3"><img class="image-crop-final" ng-src="{{ croppedDataUri }}" /></section></div>',
+        template: '<div id="image-crop-{{ rand }}" class="ng-image-crop ng-image-crop--{{ shape }}" ng-style="moduleStyles"><section ng-style="sectionStyles" ng-show="step==1"><div style="margin-bottom: 15px;" class="row no-margin-right-s-only no-margin-left-s-only">        <div class="file-field input-field btn waves-effect waves-light col s12 m10 offset-m1 l8 offset-l2"><span>Selecionar		<input type="file" class="image-crop-input"  accept="{{accept}}" />         </span></div>			</div></section><section ng-style="sectionStyles" ng-show="step==2"><canvas class="cropping-canvas" width="{{ canvasWidth }}" height="{{ canvasHeight }}" ng-mousemove="onCanvasMouseMove($event)" ng-mousedown="onCanvasMouseDown($event)" ng-mouseup="onCanvasMouseUp($event)"></canvas><div ng-style="croppingGuideStyles" class="cropping-guide"></div><div class="zoom-handle" ng-mousemove="onHandleMouseMove($event)" ng-mousedown="onHandleMouseDown($event)" ng-mouseup="onHandleMouseUp($event)"><span>&larr; zoom &rarr;</span></div><button  class="btn green lighten-2 col s12 m10 offset-m1 l8 offset-l2" ng-click="crop()" style="margin-bottom: 20px;">Crop</button></section><section ng-style="sectionStyles" class="image-crop-section-final" ng-show="step==3"><img class="image-crop-final" ng-src="{{ croppedDataUri }}" /></section></div>',
         replace: true,
         restrict: 'AE',
         scope: {
@@ -770,7 +770,7 @@
           height: '@',
           shape: '@',
           result: '=',
-          step: '='
+          step: '=',
 		  accept: '='
         },
         link: function (scope, element, attributes) {
@@ -780,9 +780,10 @@
           scope.shape = scope.shape || 'circle';
           scope.width = parseInt(scope.width, 10) || 300;
           scope.height = parseInt(scope.height, 10) || 300;
-
           scope.canvasWidth = scope.width + 100;
           scope.canvasHeight = scope.height + 100;
+		  scope.accept = scope.accept || 'image/*'
+		  
 
           var $elm = element[0];
 
