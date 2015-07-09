@@ -14,8 +14,8 @@
   user-select: none;
 }
 /* Each of the 3 steps in the process are contained within sections */
-.ng-image-crop > section {
-  /*background: #ccc;*/
+.ng-image-crop.step-2 > section {
+  background: black;
 }
 /* The cropping button */
 .ng-image-crop button {
